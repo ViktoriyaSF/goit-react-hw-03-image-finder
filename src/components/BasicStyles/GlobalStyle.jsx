@@ -18,7 +18,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-/* --------- */
+/* ---------- */
 h1,
 h2,
 h3,
