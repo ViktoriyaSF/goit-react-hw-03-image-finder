@@ -36,7 +36,7 @@ export class App extends Component {
             />
           </form>
         </header>
-        {/* <header class="searchbar">
+        {/* <Searchbar">
           <form class="form">
             <button type="submit" class="button">
               <span class="button-label">Search</span>
@@ -50,7 +50,7 @@ export class App extends Component {
               placeholder="Search images and photos"
             />
           </form>
-        </header> */}
+        </Searchbar> */}
         <GlobalStyle />
       </Layout>
     );

@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const ContainerStyl = styled.div`
   /* min-width: 320px; */
-  padding: 0 15px;
-  margin-top: 40px;
+  /* padding: 0 15px; */
+  /* margin-top: 40px; */
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 
-  display: block;
+  /* display: block; */
   width: 320px;
 
   @media screen and (min-width: 480px) {
