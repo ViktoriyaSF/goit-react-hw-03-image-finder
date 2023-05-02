@@ -29,7 +29,7 @@ export class Searchbar extends Component {
         <SearchFormStyle on Submit={this.handleSubmit}>
           <SearchFormButtonStyle type="submit">
             <span>
-              <FiSearch />
+              <FiSearch size="2em" />
             </span>
           </SearchFormButtonStyle>
 

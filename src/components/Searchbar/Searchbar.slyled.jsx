@@ -72,8 +72,4 @@ export const SearchFormInputStyle = styled.input`
     font: inherit;
     font-size: 18px;
   }
-  .react-icons {
-    width: 32px;
-    height: 32px;
-  }
 `;
