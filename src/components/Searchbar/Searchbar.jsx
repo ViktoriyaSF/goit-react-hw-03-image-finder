@@ -42,8 +42,8 @@ export class Searchbar extends Component {
           <SearchFormInputStyle
             value={search}
             type="text"
-            autocomplete="off"
-            autofocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
             onChange={this.handleInputSearch}
           />
