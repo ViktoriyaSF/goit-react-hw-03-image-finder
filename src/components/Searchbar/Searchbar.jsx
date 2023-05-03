@@ -17,7 +17,7 @@ export class Searchbar extends Component {
     search: '',
   };
 
-  handleInputSearch = evt => {
+  searchResult = evt => {
     const { value } = evt.currentTarget;
     this.setState({ search: value.trim() });
     console.log(value);
@@ -32,7 +32,7 @@ export class Searchbar extends Component {
     const { search } = this.state;
     return (
       <SearchbarStyle>
-        <SearchFormStyle on Submit={this.handleSubmit}>
+        <SearchFormStyle onSubmit={this.searchResult}>
           <SearchFormButtonStyle type="submit">
             <span>
               <FiSearch size="1.5em" />

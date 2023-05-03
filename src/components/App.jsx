@@ -4,44 +4,63 @@ import { GlobalStyle } from './BasicStyles/GlobalStyle';
 import { ContainerStyl } from 'components/BasicStyles/Container.staled';
 import { Searchbar } from './Searchbar/Searchbar';
 
-import { ImageGallery } from './ImageGallery/ImageGallery';
+// import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
+import { fetchImages } from './api';
 
 export class App extends Component {
   state = {
-    search: '',
-    images: [],
+    pictures: [],
+    status: 'idle',
+    showModal: false,
+    largeImageUrl: '',
     page: 1,
-    total: 1,
-    loading: false, // флаг, який показує, чи відбувається завантаження
-    error: null,
+    query: '',
+    loadMore: null,
   };
 
-  componentDidUpdate(_, PrevState) {
-    // Перевіряємо, чи змінились пропи search або page.
+  getLargeImgUrl = imgUrl => {
+    this.setState({ largeImageUrl: imgUrl });
+    this.toggleModal();
+  };
+
+  searchResult = value => {
+    this.setState({ query: value, page: 1, pictures: [], loadMore: null });
+  };
+
+  handleLoadMore = () => {
+    this.setState(prevState => ({
+      page: prevState.page + 1,
+    }));
+  };
+
+  componentDidUpdate(_, prevState) {
+    const { page, query } = this.state;
+
     if (
-      PrevState.search !== this.state.search ||
-      PrevState.page !== this.state.page
+      prevState.page !== this.state.page ||
+      prevState.query !== this.state.query
     ) {
-      this.getFunc(this.state.search, this.state.page);
+      this.setState({ status: 'loading' });
+      fetchImages(query, page)
+        .then(e =>
+          this.setState(prevState => ({
+            pictures: [...prevState.pictures, ...e.hits],
+            status: 'idle',
+            loadMore: 12 - e.hits.length,
+          }))
+        )
+        .catch(error => console.log(error));
     }
   }
-  getFunc = (text, page) => {
-    this.setState({ loading: true });
-    
-
-  handleFormSubmit = search => {
-    this.setState({ search });
-    console.log(this.setState);
-  };
 
   render() {
     return (
       <Layout>
-        <Searchbar onSubmit={this.handleFormSubmit} />
+        <Searchbar />
         <ContainerStyl>
-          <ImageGallery search={this.state.search} />
+          {/* <ImageGallery /> */}
           <Button />
           <Loader />
         </ContainerStyl>
