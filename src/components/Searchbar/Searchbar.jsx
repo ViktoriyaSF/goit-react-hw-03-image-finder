@@ -9,10 +9,6 @@ import { FiSearch } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 
 export class Searchbar extends Component {
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
-
   state = {
     search: '',
   };
@@ -52,3 +48,6 @@ export class Searchbar extends Component {
     );
   }
 }
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
