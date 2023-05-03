@@ -60,7 +60,10 @@ export class App extends Component {
       <Layout>
         <Searchbar />
         <ContainerStyl>
-          {/* <ImageGallery /> */}
+          {/* <ImageGallery
+            pictures={this.pictures}
+            onClick={this.getLargeImgUrl}
+          /> */}
           <Button />
           <Loader />
         </ContainerStyl>
