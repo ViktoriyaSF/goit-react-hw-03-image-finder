@@ -4,7 +4,7 @@ import { GlobalStyle } from './BasicStyles/GlobalStyle';
 import { ContainerStyl } from 'components/BasicStyles/Container.staled';
 import { Searchbar } from './Searchbar/Searchbar';
 
-// import { ImageGallery } from './ImageGallery/ImageGallery';
+import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
 import { fetchImages } from './api';
@@ -56,16 +56,14 @@ export class App extends Component {
   }
 
   render() {
+    const { pictures, status, showModal, largeImageUrl, loadMore } = this.state;
     return (
       <Layout>
         <Searchbar />
         <ContainerStyl>
-          {/* <ImageGallery
-            pictures={this.pictures}
-            onClick={this.getLargeImgUrl}
-          /> */}
-          <Button />
-          <Loader />
+          <ImageGallery pictures={pictures} onClick={this.getLargeImgUrl} />
+          {status === 'loading' && <Loader />}
+          {loadMore === 0 && <Button onClick={this.handleLoadMore} />}
         </ContainerStyl>
 
         <GlobalStyle />
