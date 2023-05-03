@@ -8,20 +8,32 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
 
-// import { fetchImages } from './api';
-
 export class App extends Component {
   state = {
-    searchQuery: '',
+    search: '',
     images: [],
-    totalHits: null,
-    isLoading: false,
+    page: 1,
+    total: 1,
+    loading: false, // флаг, який показує, чи відбувається завантаження
     error: null,
-    selectedImg: null,
   };
-  // передача пошукового запиту при сабміті форми
-  handleFormSubmit = (searchQuery, page) => {
-    this.setState({ ...searchQuery, ...page });
+
+  componentDidUpdate(_, PrevState) {
+    // Перевіряємо, чи змінились пропи search або page.
+    if (
+      PrevState.search !== this.state.search ||
+      PrevState.page !== this.state.page
+    ) {
+      this.getFunc(this.state.search, this.state.page);
+    }
+  }
+  getFunc = (text, page) => {
+    this.setState({ loading: true });
+    
+
+  handleFormSubmit = search => {
+    this.setState({ search });
+    console.log(this.setState);
   };
 
   render() {
@@ -29,7 +41,7 @@ export class App extends Component {
       <Layout>
         <Searchbar onSubmit={this.handleFormSubmit} />
         <ContainerStyl>
-          <ImageGallery />
+          <ImageGallery search={this.state.search} />
           <Button />
           <Loader />
         </ContainerStyl>

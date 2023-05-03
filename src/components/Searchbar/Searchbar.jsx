@@ -6,8 +6,13 @@ import {
   SearchFormStyle,
 } from './Searchbar.slyled';
 import { FiSearch } from 'react-icons/fi';
+import PropTypes from 'prop-types';
 
 export class Searchbar extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   state = {
     search: '',
   };
@@ -19,12 +24,13 @@ export class Searchbar extends Component {
   };
   handleSubmit = evt => {
     evt.preventDefault();
+    this.props.onSubmit(this.state.search);
     this.setState({ search: ' ' }); //почистили
   };
 
   render() {
+    const { search } = this.state;
     return (
-      // const { search } = this.state
       <SearchbarStyle>
         <SearchFormStyle on Submit={this.handleSubmit}>
           <SearchFormButtonStyle type="submit">
@@ -34,7 +40,7 @@ export class Searchbar extends Component {
           </SearchFormButtonStyle>
 
           <SearchFormInputStyle
-            value={this.state.search}
+            value={search}
             type="text"
             autocomplete="off"
             autofocus
