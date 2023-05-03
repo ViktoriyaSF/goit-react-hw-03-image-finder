@@ -4,31 +4,36 @@ import { GlobalStyle } from './BasicStyles/GlobalStyle';
 import { ContainerStyl } from 'components/BasicStyles/Container.staled';
 import { Searchbar } from './Searchbar/Searchbar';
 
+import { ImageGallery } from './ImageGallery/ImageGallery';
+import { Button } from './Button/Button';
+import { Loader } from './Loader/Loader';
+
+// import { fetchImages } from './api';
+
 export class App extends Component {
   state = {
-    photoName: ' ',
+    searchQuery: '',
+    images: [],
+    totalHits: null,
+    isLoading: false,
+    error: null,
+    selectedImg: null,
+  };
+  // передача пошукового запиту при сабміті форми
+  handleFormSubmit = (searchQuery, page) => {
+    this.setState({ ...searchQuery, ...page });
   };
 
   render() {
     return (
       <Layout>
-        <Searchbar></Searchbar>
-        <ContainerStyl></ContainerStyl>
-        {/* <Searchbar">
-          <form class="form">
-            <button type="submit" class="button">
-              <span class="button-label">Search</span>
-            </button>
+        <Searchbar onSubmit={this.handleFormSubmit} />
+        <ContainerStyl>
+          <ImageGallery />
+          <Button />
+          <Loader />
+        </ContainerStyl>
 
-            <input
-              class="input"
-              type="text"
-              autocomplete="off"
-              autofocus
-              placeholder="Search images and photos"
-            />
-          </form>
-        </Searchbar> */}
         <GlobalStyle />
       </Layout>
     );
