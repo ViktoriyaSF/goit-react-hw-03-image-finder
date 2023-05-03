@@ -8,6 +8,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
 import { fetchImages } from './api';
+import { Modal } from './Modal/Modal';
 
 export class App extends Component {
   state = {
@@ -61,6 +62,9 @@ export class App extends Component {
       <Layout>
         <Searchbar />
         <ContainerStyl>
+          {showModal && (
+            <Modal imgUrl={largeImageUrl} onClose={this.toggleModal} />
+          )}
           <ImageGallery pictures={pictures} onClick={this.getLargeImgUrl} />
           {status === 'loading' && <Loader />}
           {loadMore === 0 && <Button onClick={this.handleLoadMore} />}
