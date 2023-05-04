@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout } from './Layout/Layout';
 import { GlobalStyle } from './BasicStyles/GlobalStyle';
-import { ContainerStyl } from 'components/BasicStyles/Container.staled';
+// import { ContainerStyl } from 'components/BasicStyles/Container.staled';
 import { Searchbar } from './Searchbar/Searchbar';
 
 import { ImageGallery } from './ImageGallery/ImageGallery';
@@ -67,14 +67,14 @@ export class App extends Component {
     return (
       <Layout>
         <Searchbar onSubmit={this.searchResult} />
-        <ContainerStyl>
-          {showModal && (
-            <Modal imgUrl={largeImageUrl} onClose={this.toggleModal} />
-          )}
-          <ImageGallery pictures={pictures} onClick={this.getLargeImgUrl} />
-          {status === 'loading' && <Loader />}
-          {loadMore === 0 && <Button onClick={this.handleLoadMore} />}
-        </ContainerStyl>
+        {/* <ContainerStyl> */}
+        {showModal && (
+          <Modal imgUrl={largeImageUrl} onClose={this.toggleModal} />
+        )}
+        <ImageGallery pictures={pictures} onClick={this.getLargeImgUrl} />
+        {status === 'loading' && <Loader />}
+        {loadMore === 0 && <Button onClick={this.handleLoadMore} />}
+        {/* </ContainerStyl> */}
 
         <GlobalStyle />
       </Layout>

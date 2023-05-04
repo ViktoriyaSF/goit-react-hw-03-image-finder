@@ -52,6 +52,11 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+ 
+  object-fit: cover;
+
+  min-width: 200px;
+  width: 100%;
 }
 button {
   display: block;

@@ -7,7 +7,7 @@ export const ImageGalleryItemStyle = styled.li`
 `;
 
 export const ImageGalleryImageStyle = styled.img`
-  width: 100 %;
+  width: 100%;
   height: 260px;
   object-fit: cover;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);

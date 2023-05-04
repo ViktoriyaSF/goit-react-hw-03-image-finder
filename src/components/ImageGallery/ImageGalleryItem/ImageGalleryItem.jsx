@@ -5,7 +5,6 @@ import {
 import PropTypes from 'prop-types';
 
 export const ImageGalleryItem = ({ pictures, onClickImg }) => {
-  console.log(pictures);
   return pictures.map(({ id, largeImageURL, webformatURL, tags }) => {
     return (
       <ImageGalleryItemStyle key={id}>
