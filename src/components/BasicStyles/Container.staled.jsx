@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const ContainerStyl = styled.div`
-  /* min-width: 320px; */
-  /* padding: 0 15px; */
+  min-width: 320px;
+  padding: 0 15px;
   /* margin-top: 40px; */
-  /* margin-left: auto;
+  margin-left: auto;
   margin-right: auto;
-  text-align: center; */
+  text-align: center;
 
   /* display: block; */
   /* width: 320px; */
@@ -23,9 +23,10 @@ export const ContainerStyl = styled.div`
   /* background-color: #bceeae; */
   /* border: 1px solid black; */
   /* border-radius: 40px; */
-  /* display: flex;
-  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
   gap: 10px;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
 `;

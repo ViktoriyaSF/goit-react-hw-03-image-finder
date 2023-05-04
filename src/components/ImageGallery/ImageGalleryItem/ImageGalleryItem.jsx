@@ -5,15 +5,16 @@ import {
 import PropTypes from 'prop-types';
 
 export const ImageGalleryItem = ({ pictures, onClickImg }) => {
-  return pictures.map((picture, index) => {
+  console.log(pictures);
+  return pictures.map(({ id, largeImageURL, webformatURL, tags }) => {
     return (
-      <ImageGalleryItemStyle key={index}>
+      <ImageGalleryItemStyle key={id}>
         <ImageGalleryImageStyle
           onClick={() => {
-            onClickImg(picture.largeImageURL);
+            onClickImg(largeImageURL);
           }}
-          src={picture.webformatURL}
-          alt={picture.tags}
+          src={webformatURL}
+          alt={tags}
         />
       </ImageGalleryItemStyle>
     );
@@ -22,5 +23,5 @@ export const ImageGalleryItem = ({ pictures, onClickImg }) => {
 
 ImageGalleryItem.propTypes = {
   pictures: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClickImg: PropTypes.func.isRequired,
 };

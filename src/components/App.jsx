@@ -26,6 +26,11 @@ export class App extends Component {
     this.toggleModal();
   };
 
+  toggleModal = () => {
+    this.setState(state => ({
+      showModal: !state.showModal,
+    }));
+  };
   searchResult = value => {
     this.setState({ query: value, page: 1, pictures: [], loadMore: null });
   };
@@ -44,6 +49,7 @@ export class App extends Component {
       prevState.query !== this.state.query
     ) {
       this.setState({ status: 'loading' });
+      console.log(fetchImages(query, page));
       fetchImages(query, page)
         .then(e =>
           this.setState(prevState => ({
@@ -60,7 +66,7 @@ export class App extends Component {
     const { pictures, status, showModal, largeImageUrl, loadMore } = this.state;
     return (
       <Layout>
-        <Searchbar />
+        <Searchbar onSubmit={this.searchResult} />
         <ContainerStyl>
           {showModal && (
             <Modal imgUrl={largeImageUrl} onClose={this.toggleModal} />

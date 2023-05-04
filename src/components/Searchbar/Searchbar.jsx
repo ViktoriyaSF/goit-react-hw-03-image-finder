@@ -28,7 +28,7 @@ export class Searchbar extends Component {
     const { search } = this.state;
     return (
       <SearchbarStyle>
-        <SearchFormStyle onSubmit={this.searchResult}>
+        <SearchFormStyle onSubmit={this.handleSubmit}>
           <SearchFormButtonStyle type="submit">
             <span>
               <FiSearch size="1.5em" />

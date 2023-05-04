@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 export const ImageGallery = ({ pictures, onClick }) => {
   return (
     <ImageGalleryStyle>
-      <ImageGalleryItem onClick={onClick} pictures={pictures} />
+      <ImageGalleryItem onClickImg={onClick} pictures={pictures} />
     </ImageGalleryStyle>
   );
 };
