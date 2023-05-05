@@ -7,7 +7,7 @@ import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
-import { fetchImages } from './api';
+import { fetchImages } from '../service/api';
 import { Modal } from './Modal/Modal';
 
 export class App extends Component {
@@ -32,7 +32,12 @@ export class App extends Component {
     }));
   };
   searchResult = value => {
-    this.setState({ query: value, page: 1, pictures: [], loadMore: null });
+    this.setState({
+      query: value,
+      page: 1,
+      pictures: [],
+      loadMore: null,
+    });
   };
 
   handleLoadMore = () => {
@@ -44,12 +49,22 @@ export class App extends Component {
   componentDidUpdate(_, prevState) {
     const { page, query } = this.state;
 
+    console.log(
+      'last',
+      prevState.pictures.length,
+      prevState.page,
+      prevState.query
+    );
+
+    console.log('next', this.state.pictures.length, page, query);
+
     if (
       prevState.page !== this.state.page ||
-      prevState.query !== this.state.query
+      prevState.query !== this.state.query ||
+      (prevState.query !== this.state.query && this.state.pictures.length === 0)
     ) {
       this.setState({ status: 'loading' });
-      console.log(fetchImages(query, page));
+      // console.log(fetchImages(query, page));
       fetchImages(query, page)
         .then(e =>
           this.setState(prevState => ({

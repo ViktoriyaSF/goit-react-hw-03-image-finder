@@ -16,7 +16,7 @@ export class Searchbar extends Component {
   searchResult = evt => {
     const { value } = evt.currentTarget;
     this.setState({ search: value.trim() });
-    console.log(value);
+    // console.log(value);
   };
   handleSubmit = evt => {
     evt.preventDefault();
