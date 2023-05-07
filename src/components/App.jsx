@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Layout } from './Layout/Layout';
 import { GlobalStyle } from './BasicStyles/GlobalStyle';
 // import { ContainerStyl } from 'components/BasicStyles/Container.staled';
@@ -32,8 +33,19 @@ export class App extends Component {
     }));
   };
   searchResult = value => {
+    console.log(value);
+    const newQuery = value.trim();
+    console.log(this.state.query);
+    if (this.state.query === newQuery) {
+      return Notify.info('you just searched for that name');
+    }
+    if (!newQuery) {
+      return Notify.failure(
+        'Sorry, the search field cannot be empty. Please enter information to search.'
+      );
+    }
     this.setState({
-      query: value,
+      query: newQuery,
       page: 1,
       pictures: [],
       loadMore: null,
@@ -45,26 +57,14 @@ export class App extends Component {
       page: prevState.page + 1,
     }));
   };
-
   componentDidUpdate(_, prevState) {
     const { page, query } = this.state;
-
-    console.log(
-      'last',
-      prevState.pictures.length,
-      prevState.page,
-      prevState.query
-    );
-
-    console.log('next', this.state.pictures.length, page, query);
-
     if (
       prevState.page !== this.state.page ||
-      prevState.query !== this.state.query ||
-      (prevState.query !== this.state.query && this.state.pictures.length === 0)
+      prevState.query !== this.state.query
+      // fetchImagesHits() !== 0
     ) {
       this.setState({ status: 'loading' });
-      // console.log(fetchImages(query, page));
       fetchImages(query, page)
         .then(e =>
           this.setState(prevState => ({
