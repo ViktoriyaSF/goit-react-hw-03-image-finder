@@ -33,16 +33,14 @@ export class App extends Component {
     }));
   };
   searchResult = value => {
-    console.log(value);
     const newQuery = value.trim();
-    console.log(this.state.query);
     if (this.state.query === newQuery) {
+      if (!newQuery) {
+        return Notify.failure(
+          'Sorry, the search field cannot be empty. Please enter information to search.'
+        );
+      }
       return Notify.info('you just searched for that name');
-    }
-    if (!newQuery) {
-      return Notify.failure(
-        'Sorry, the search field cannot be empty. Please enter information to search.'
-      );
     }
     this.setState({
       query: newQuery,
@@ -62,9 +60,9 @@ export class App extends Component {
     if (
       prevState.page !== this.state.page ||
       prevState.query !== this.state.query
-      // fetchImagesHits() !== 0
     ) {
       this.setState({ status: 'loading' });
+
       fetchImages(query, page)
         .then(e =>
           this.setState(prevState => ({
